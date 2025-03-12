@@ -46,12 +46,6 @@ Next, download the following data, and place them under a desired direcory, e.g.
 - The UCGS dataset are provided by the paper author [here](https://drive.google.com/file/d/1DjSB7GqORz5rUvB3KaAMIiGwX1mtmRjb/view). 
 - The MatrixCity dataset can be downloaded from [Hugging Face](https://huggingface.co/datasets/BoDai/MatrixCity/tree/main)/[Openxlab](https://openxlab.org.cn/datasets/bdaibdai/MatrixCity)/[百度网盘[提取码:hqnn]](https://pan.baidu.com/share/init?surl=87P0e5p1hz9t5mgdJXjL1g). 
 
-## 🚀 TODO & Roadmap
-
-- [x] Release Code and Dataset 🎉
-- [ ] Support distributed training
-
-
 ## Training
 
 For training a small scene like Block_small, first generate the config and then run it:
