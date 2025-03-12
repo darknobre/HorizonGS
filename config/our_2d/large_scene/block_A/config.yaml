@@ -1,0 +1,48 @@
+data_params: {
+    model_config: {
+        name: "GaussianLoDModel",
+        kwargs: {
+            fork: 2,
+            gs_attr: "2D",
+            color_attr: "SH2",
+            feat_dim: 32,
+            view_dim: 0,
+            appearance_dim: 0,
+            n_offsets: 5, 
+            voxel_size: 0.001,
+            render_mode: "RGB+ED",
+        }
+    },
+    source_path: "data/matrixcity/small_city/merge/pose/block_A",
+    pp_opt_yaml_path: "config/base/large_scene",  
+    dataset_name: "matrix_city_2d",
+    scene_name: "block_A", 
+    images: "images",
+    resolution: -1,
+    white_background: False,
+    random_background: False,
+    resolution_scales: [1.0],
+    data_device: "cpu",
+    eval: True,
+    ratio: 1,
+
+    data_format: "blender", #blender
+    add_mask: True,
+    add_depth: False,
+    add_aerial: True,
+    add_street: True,
+    scale: 0.25,
+    center: [0,0,0],
+
+    aerial_lod: "multi",
+    street_lod: "multi",
+    dist_ratio: 0.999,
+
+    xyz_plane: [1, 1, 0],
+    partition: True,
+    n_width: 4,
+    n_height: 2,
+    partition_type: "num", # options: size / num
+    overlap_area: 0.2,
+    visible_rate: 0.25,
+}

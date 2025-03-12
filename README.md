@@ -4,9 +4,6 @@
 
 [Lihan Jiang*](https://jianglh-whu.github.io/), [Kerui Ren*](https://github.com/tongji-rkr), [Mulin Yu](https://scholar.google.com/citations?user=w0Od3hQAAAAJ), [Linning Xu](https://eveneveno.github.io/lnxu), [Junting Dong](https://jtdong.com/), [Tao Lu](https://github.com/inspirelt), [Feng Zhao](https://scholar.google.co.uk/citations?user=r6CvuOUAAAAJ&hl=en), [Dahua Lin](http://dahua.site/), [Bo Dai](https://daibo.info/) ✉️ <br />
 
-## News
-- **[2025.3]** 🎈Horizon-GS is accepted by [CVPR 2025](https://cvpr.thecvf.com/Conferences/2025).
-
 ## Overview
 
 Implementation of Horizon-GS, a novel approach built upon Gaussian Splatting techniques, tackles the unified reconstruction and rendering for aerial and street views. Horizon-GS addresses the key challenges of combining these perspectives with a new training strategy, overcoming viewpoint discrepancies to generate high-fidelity scenes.
@@ -55,24 +52,36 @@ Next, download the following data, and place them under a desired direcory, e.g.
 - [ ] Support distributed training
 
 
-
 ## Training
 
-For training a single scene with the base model, modify the path and configurations in ```config/<method>/base_model.yaml``` accordingly and run it:
+For training a small scene like Block_small, first generate the config and then run it:
 
 ```
-python train.py --config config/<method>/base_model.yaml
+# generate config, we have provided the config for all datasets in the config folder
+python preprocess/data_preprocess.py --config config/<dataset>/config.yaml
+
+# train coarse
+python train.py --config config/<dataset>/coarse.yaml
+
+# train fine
+python train.py --config config/<dataset>/fine.yaml
 ```
 
-For training  a single scene with the lod model, modify the path and configurations in ```config/<method>/lod_model.yaml``` accordingly and run it:
+For training a large scene like Block_A, first generate the config and then run it:
 
 ```
-python train.py --config config/<method>/lod_model.yaml
+# generate config
+python preprocess/data_preprocess.py --config config/<dataset>/config.yaml
+
+# train coarse of each chunk
+python train.py --config config/<dataset>/coarse.yaml
+
+# train fine of each chunk
+python train.py --config config/<dataset>/fine.yaml
+
+# merge all chunks
+python merge.py -m <path to trained model> --config config/<dataset>/config.yaml
 ```
-
-This command will store the configuration file and log (with running-time code) into ```outputs/dataset_name/scene_name/cur_time``` automatically.
-
-In addition, we use [gsplat](https://docs.gsplat.studio/main/) to unify the rendering process of different Gaussians. Considering the adaptation for 2D-GS, we choose [gsplat version](https://github.com/FantasticOven2/gsplat.git) which supports 2DGS.
 
 ## Evaluation
 
@@ -81,6 +90,7 @@ We keep the manual rendering function with a similar usage of the counterpart in
 ```
 python render.py -m <path to trained model> # Generate renderings
 python metrics.py -m <path to trained model> # Compute error metrics on renderings
+python export_mesh.py -m <path to trained model> # Export mesh
 ```
 
 ## Contact
