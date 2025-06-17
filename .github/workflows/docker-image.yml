@@ -15,10 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag horizongs-docker-image:latest
+      run: docker build . --file Dockerfile --tag darknobre/horizongs:latest
     - name: login to docker hub
       run:
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
     - name: push to docker hub
       run:
-        docker push horizongs-docker-image:latest
+        docker push darknobre/horizongs:latest
