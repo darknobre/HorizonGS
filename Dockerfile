@@ -14,4 +14,4 @@ CMD ["conda", "run", "-n", "horizon_gs", "jupyter","lab", "--ip='*'", "--port=88
 
 FROM ubuntu 
 RUN apt-get update 
-CMD [“echo”,”Image created”] 
+CMD ["echo","Image created"] 
