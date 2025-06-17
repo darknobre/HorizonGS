@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY environment.yml /app/enviroment.yml
 
-RUN conda env create -f /app/enviroment.yml
+RUN conda env create -f /app/enviroment.yml || cat /app/enviroment.yml
 
 RUN echo "source activate horizon_gs" > ~/.bashrc
 ENV PATH /opt/conda/envs/horizon_gs/bin:$PATH
