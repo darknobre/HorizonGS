@@ -15,6 +15,8 @@ COPY . /app
 
 RUN pip install jupyter
 
+RUN conda install -c anaconda git
+
 RUN conda env create -f /app/environment.yml
 
 RUN echo "source activate horizon_gs" > ~/.bashrc
