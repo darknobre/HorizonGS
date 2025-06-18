@@ -4,11 +4,11 @@ FROM continuumio/miniconda3
 
 WORKDIR /app
 
-COPY environment.yml /app/environment.yml
+COPY . /app
 
 RUN pip install jupyter
 
-RUN conda env create -f /app/enviroment.yml
+RUN conda env create -f /app/environment.yml.yml
 
 RUN echo "source activate horizon_gs" > ~/.bashrc
 ENV PATH /opt/conda/envs/horizon_gs/bin:$PATH
