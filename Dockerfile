@@ -1,20 +1,19 @@
-FROM nvidia/cuda:12.1.1-runtime-ubuntu20.04
 
+# Use CUDA-compatible base image
+FROM nvidia/cuda:{cudaver}-base-ubuntu20.04
+
+# Set non-interactive frontend for apt
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y \
-    wget \
-    curl \
-    git \
-    bzip2 \
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
+    libgl1 \
     libglib2.0-0 \
-    libxext6 \
-    libsm6 \
-    libxrender1 \
-    libgl1-mesa-glx \
-    sudo \
+    wget \
+    bzip2 \
     && rm -rf /var/lib/apt/lists/*
+
 
 ENV CONDA_DIR=/opt/conda
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
@@ -24,7 +23,7 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 WORKDIR /app
 
-COPY environment.yml /app/enviroment.yml
+COPY . /app
 
 RUN conda env create -f /app/enviroment.yml
 
