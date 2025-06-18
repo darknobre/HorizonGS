@@ -1,6 +1,6 @@
 
 # Use CUDA-compatible base image
-FROM nvidia/cuda:{cudaver}-base-ubuntu20.04
+FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
 
 # Set non-interactive frontend for apt
 ENV DEBIAN_FRONTEND=noninteractive
