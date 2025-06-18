@@ -5,7 +5,7 @@ FROM python:3.8
 
 WORKDIR /app
 
-COPY . /app
+COPY environment.yml /app/environment.yml
 
 RUN pip install jupyter
 
