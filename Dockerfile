@@ -1,6 +1,7 @@
 
 
-FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04
+FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+RUN apt-get update && apt-get install -y git
 
 RUN apt update && apt install -y wget && \
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
