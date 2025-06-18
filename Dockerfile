@@ -3,20 +3,11 @@
 FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
 RUN apt-get update && apt-get install -y git
 
-RUN apt update && apt install -y wget && \
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
-    bash miniconda.sh -b -p /opt/conda && \
-    rm miniconda.sh && \
-    apt clean
-ENV PATH="/opt/conda/bin:$PATH"
-
 WORKDIR /app
 
 COPY . /app
 
 RUN pip install jupyter
-
-RUN conda install -c anaconda git
 
 RUN conda env create -f /app/environment.yml
 
