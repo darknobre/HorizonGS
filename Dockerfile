@@ -1,7 +1,6 @@
 
 # Use CUDA-compatible base image
-FROM python:3.8
-
+FROM continuumio/miniconda3
 
 WORKDIR /app
 
