@@ -1,6 +1,6 @@
 
 
-FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 RUN apt-get update && apt-get install -y git
 
 WORKDIR /app
