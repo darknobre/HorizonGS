@@ -24,4 +24,4 @@ dependencies:
     - colorama
     - opencv-python
     - scikit-learn
-    - git+https://github.com/tongji-rkr/gsplat-2dgs.git
+    - gsplat
